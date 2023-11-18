@@ -1,0 +1,17 @@
+[build]
+target = "thumbv7em-none-eabihf"
+
+rustflags = [
+    "-C", "linker=/home/marco/Downloads/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc",
+    "-C", "link-args=-mfloat-abi=hard",
+    "-C", "link-args=-mfpu=fpv4-sp-d16",
+    "-C", "link-arg=-nostartfiles",
+    "-C", "link-arg=-TSTM32WB15CCUX_FLASH.ld",
+    "-C", "link-args=-g",
+    "-C", "link-args=-Wl,--print-memory-usage",
+    "-C", "link-args=-Wl,-gc-sections",
+    "-C", "link-args=-Wl,-Map=memory.map",
+    "-C", "link-args=-mcpu=cortex-m4",
+    "-C", "link-args=-mthumb",
+    "-C", "link-args=-mthumb-interwork",
+]

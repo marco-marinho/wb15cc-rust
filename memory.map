@@ -1,0 +1,314 @@
+
+Discarded input sections
+
+ .text          0x00000000       0x20 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .text.rust_begin_unwind
+                0x00000000        0x8 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .ARM.exidx.text.rust_begin_unwind
+                0x00000000        0x8 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .text          0x00000000        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .text          0x00000000        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x0001b800         xr
+RAM1             0x20000008         0x00002ff8         xrw
+RAM_SHARED       0x20030000         0x00002800         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /tmp/rustcJRuRnv/symbols.o
+LOAD /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+LOAD /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+LOAD /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+LOAD /home/marco/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/thumbv7em-none-eabihf/lib/librustc_std_workspace_core-b387203bd836970e.rlib
+LOAD /home/marco/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/thumbv7em-none-eabihf/lib/libcore-e36cc92b35a01423.rlib
+LOAD /home/marco/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/thumbv7em-none-eabihf/lib/libcompiler_builtins-937035e9954cf71b.rlib
+                0x20003000                        _estack = (ORIGIN (RAM1) + LENGTH (RAM1))
+                0x00000200                        _Min_Heap_Size = 0x200
+                0x00000400                        _Min_Stack_Size = 0x400
+
+.isr_vector     0x08000000      0x13c
+                0x08000000                        . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x13c /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+                0x08000000                g_pfnVectors
+                0x0800013c                        . = ALIGN (0x4)
+
+.text           0x0800013c      0x160
+                0x0800013c                        . = ALIGN (0x4)
+ *(.text)
+ *(.text*)
+ .text.data_initializers
+                0x0800013c       0x18 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .text.Reset_Handler
+                0x08000154       0x54 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+                0x08000154                Reset_Handler
+ .text.Default_Handler
+                0x080001a8        0x2 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+                0x080001a8                EXTI2_IRQHandler
+                0x080001a8                DebugMon_Handler
+                0x080001a8                DMA1_CH4_IRQHandler
+                0x080001a8                TIM1_CC_IRQHandler
+                0x080001a8                HardFault_Handler
+                0x080001a8                SysTick_Handler
+                0x080001a8                PVD_IRQHandler
+                0x080001a8                PendSV_Handler
+                0x080001a8                NMI_Handler
+                0x080001a8                EXTI3_IRQHandler
+                0x080001a8                True_RNG_IRQHandler
+                0x080001a8                LPTIM2_IRQHandler
+                0x080001a8                PWR_SOTF_IRQHandler
+                0x080001a8                EXTI0_IRQHandler
+                0x080001a8                IPCC_C1_TX_IT_IRQHandler
+                0x080001a8                RTC_TAMP_IRQHandler
+                0x080001a8                UsageFault_Handler
+                0x080001a8                SPI1_IRQHandler
+                0x080001a8                DMA1_CH7_IRQHandler
+                0x080001a8                RTC_ALARM_IRQHandler
+                0x080001a8                ADC1_IRQHandler
+                0x080001a8                PKA_IRQHandler
+                0x080001a8                DMA1_CH6_IRQHandler
+                0x080001a8                I2C1_EV_IRQHandler
+                0x080001a8                DMAMUX1_OVR_IRQHandler
+                0x080001a8                DMA1_CH3_IRQHandler
+                0x080001a8                RCC_IRQHandler
+                0x080001a8                EXTI10_15_IRQHandler
+                0x080001a8                TIM1_TRG_COM_IRQHandler
+                0x080001a8                Default_Handler
+                0x080001a8                C2SEV_IRQHandler
+                0x080001a8                AES2_IRQHandler
+                0x080001a8                DMA1_CH2_IRQHandler
+                0x080001a8                RTC_WKUP_IRQHandler
+                0x080001a8                DMA1_CH1_IRQHandler
+                0x080001a8                MemManage_Handler
+                0x080001a8                IPCC_C1_RX_IT_IRQHandler
+                0x080001a8                SVC_Handler
+                0x080001a8                EXTI4_IRQHandler
+                0x080001a8                COMP_IRQHandler
+                0x080001a8                HSEM_IRQHandler
+                0x080001a8                TIM1_UP_IRQHandler
+                0x080001a8                WWDG_IRQHandler
+                0x080001a8                LPUART1_IRQHandler
+                0x080001a8                EXTI5_9_IRQHandler
+                0x080001a8                TIM2_IRQHandler
+                0x080001a8                TIM1_BRK_IRQHandler
+                0x080001a8                EXTI1_IRQHandler
+                0x080001a8                FLASH_IRQHandler
+                0x080001a8                BusFault_Handler
+                0x080001a8                USART1_IRQHandler
+                0x080001a8                I2C1_ER_IRQHandler
+                0x080001a8                DMA1_CH5_IRQHandler
+                0x080001a8                LPTIM1_IRQHandler
+ .text._start   0x080001aa       0x80 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+                0x080001aa                _start
+ .text._ZN47_$LT$i32$u20$as$u20$core..iter..range..Step$GT$17forward_unchecked17h3db7f3ecf6292f74E
+                0x0800022a        0xe /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+                0x0800022a                <i32 as core::iter::range::Step>::forward_unchecked
+ .text._ZN4core4iter5range101_$LT$impl$u20$core..iter..traits..iterator..Iterator$u20$for$u20$core..ops..range..Range$LT$A$GT$$GT$4next17h370a0a12fc008c8bE
+                0x08000238       0x10 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+                0x08000238                core::iter::range::<impl core::iter::traits::iterator::Iterator for core::ops::range::Range<A>>::next
+ .text._ZN63_$LT$I$u20$as$u20$core..iter..traits..collect..IntoIterator$GT$9into_iter17h219da7a606aa4eeeE
+                0x08000248        0xa /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+                0x08000248                <I as core::iter::traits::collect::IntoIterator>::into_iter
+ .text._ZN89_$LT$core..ops..range..Range$LT$T$GT$$u20$as$u20$core..iter..range..RangeIteratorImpl$GT$9spec_next17hc6429b9e31d71f7aE
+                0x08000252       0x4a /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+ *(.glue_7)
+ .glue_7        0x0800029c        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x0800029c        0x0 linker stubs
+ *(.eh_frame)
+ *(.init)
+ *(.fini)
+                0x0800029c                        . = ALIGN (0x4)
+                0x0800029c                        _etext = .
+
+.vfp11_veneer   0x0800029c        0x0
+ .vfp11_veneer  0x0800029c        0x0 linker stubs
+
+.v4_bx          0x0800029c        0x0
+ .v4_bx         0x0800029c        0x0 linker stubs
+
+.iplt           0x0800029c        0x0
+ .iplt          0x0800029c        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+
+.rodata         0x0800029c        0x0
+                0x0800029c                        . = ALIGN (0x4)
+ *(.rodata)
+ *(.rodata*)
+                0x0800029c                        . = ALIGN (0x4)
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+
+.ARM            0x0800029c        0x8
+                0x0800029c                        __exidx_start = .
+ *(.ARM.exidx*)
+ .ARM.exidx.text._start
+                0x0800029c        0x8 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .ARM.exidx.text._ZN47_$LT$i32$u20$as$u20$core..iter..range..Step$GT$17forward_unchecked17h3db7f3ecf6292f74E
+                0x080002a4        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+                                  0x8 (size before relaxing)
+ .ARM.exidx.text._ZN4core4iter5range101_$LT$impl$u20$core..iter..traits..iterator..Iterator$u20$for$u20$core..ops..range..Range$LT$A$GT$$GT$4next17h370a0a12fc008c8bE
+                0x080002a4        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+                                  0x8 (size before relaxing)
+ .ARM.exidx.text._ZN63_$LT$I$u20$as$u20$core..iter..traits..collect..IntoIterator$GT$9into_iter17h219da7a606aa4eeeE
+                0x080002a4        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+                                  0x8 (size before relaxing)
+ .ARM.exidx.text._ZN89_$LT$core..ops..range..Range$LT$T$GT$$u20$as$u20$core..iter..range..RangeIteratorImpl$GT$9spec_next17hc6429b9e31d71f7aE
+                0x080002a4        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+                                  0x8 (size before relaxing)
+                0x080002a4                        __exidx_end = .
+
+.rel.dyn        0x080002a4        0x0
+ .rel.iplt      0x080002a4        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+
+.preinit_array  0x080002a4        0x0
+                [!provide]                        PROVIDE (__preinit_array_start = .)
+ *(.preinit_array*)
+                [!provide]                        PROVIDE (__preinit_array_end = .)
+
+.init_array     0x080002a4        0x0
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array*)
+                [!provide]                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x080002a4        0x0
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(SORT_BY_NAME(.fini_array.*))
+ *(.fini_array*)
+                [!provide]                        PROVIDE (__fini_array_end = .)
+                0x080002a4                        _sidata = LOADADDR (.data)
+
+.data           0x20000008        0x0 load address 0x080002a4
+                0x20000008                        . = ALIGN (0x4)
+                0x20000008                        _sdata = .
+ *(.data)
+ *(.data*)
+ *(.RamFunc)
+ *(.RamFunc*)
+                0x20000008                        . = ALIGN (0x4)
+                0x20000008                        _edata = .
+
+.igot.plt       0x20000008        0x0 load address 0x080002a4
+ .igot.plt      0x20000008        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+                0x20000008                        . = ALIGN (0x4)
+
+.bss            0x20000008        0x0 load address 0x080002a4
+                0x20000008                        _sbss = .
+                0x20000008                        __bss_start__ = _sbss
+ *(.bss)
+ *(.bss*)
+ *(COMMON)
+                0x20000008                        . = ALIGN (0x4)
+                0x20000008                        _ebss = .
+                0x20000008                        __bss_end__ = _ebss
+
+._user_heap_stack
+                0x20000008      0x600 load address 0x080002a4
+                0x20000008                        . = ALIGN (0x8)
+                [!provide]                        PROVIDE (end = .)
+                [!provide]                        PROVIDE (_end = .)
+                0x20000208                        . = (. + _Min_Heap_Size)
+ *fill*         0x20000008      0x200 
+                0x20000608                        . = (. + _Min_Stack_Size)
+ *fill*         0x20000208      0x400 
+                0x20000608                        . = ALIGN (0x8)
+
+.ARM.attributes
+                0x00000000       0x3f
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x43 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .ARM.attributes
+                0x00000043       0x3a /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .ARM.attributes
+                0x0000007d       0x3a /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+MAPPING_TABLE
+ *(MAPPING_TABLE)
+
+MB_MEM1
+ *(MB_MEM1)
+                0x080002a4                        _siMB_MEM2 = LOADADDR (.MB_MEM2)
+
+.MB_MEM2        0x20030000        0x0 load address 0x080002a4
+                0x20030000                        _sMB_MEM2 = .
+ *(MB_MEM2)
+                0x20030000                        _eMB_MEM2 = .
+OUTPUT(/home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24 elf32-littlearm)
+LOAD linker stubs
+
+.debug_abbrev   0x00000000      0x290
+ .debug_abbrev  0x00000000      0x124 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .debug_abbrev  0x00000124       0x85 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .debug_abbrev  0x000001a9       0xe7 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.debug_info     0x00000000      0x951
+ .debug_info    0x00000000      0x64a /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .debug_info    0x0000064a       0xda /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .debug_info    0x00000724      0x22d /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.debug_aranges  0x00000000       0x78
+ .debug_aranges
+                0x00000000       0x28 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .debug_aranges
+                0x00000028       0x20 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .debug_aranges
+                0x00000048       0x30 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.debug_ranges   0x00000000       0x38
+ .debug_ranges  0x00000000       0x18 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .debug_ranges  0x00000018       0x20 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.debug_str      0x00000000      0x7cc
+ .debug_str     0x00000000      0x7cc /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+                                0x4df (size before relaxing)
+ .debug_str     0x000007cc      0x183 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .debug_str     0x000007cc      0x36f /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.debug_pubnames
+                0x00000000      0x235
+ .debug_pubnames
+                0x00000000       0xc9 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .debug_pubnames
+                0x000000c9       0x79 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .debug_pubnames
+                0x00000142       0xf3 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.debug_pubtypes
+                0x00000000      0x41f
+ .debug_pubtypes
+                0x00000000      0x382 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .debug_pubtypes
+                0x00000382       0x24 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .debug_pubtypes
+                0x000003a6       0x79 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.comment        0x00000000       0x2c
+ .comment       0x00000000       0x2c /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+                                 0x2d (size before relaxing)
+ .comment       0x0000002c       0x2d /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .comment       0x0000002c       0x2d /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .note.GNU-stack
+                0x00000000        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .note.GNU-stack
+                0x00000000        0x0 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.debug_frame    0x00000000       0xcc
+ .debug_frame   0x00000000       0x44 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .debug_frame   0x00000044       0x28 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .debug_frame   0x0000006c       0x60 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
+
+.debug_line     0x00000000      0x30c
+ .debug_line    0x00000000       0x83 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.3depf2gpolq5v3er.rcgu.o
+ .debug_line    0x00000083       0xf5 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.gm3muwyxa0exnh6.rcgu.o
+ .debug_line    0x00000178      0x194 /home/marco/RustroverProjects/untitled/target/thumbv7em-none-eabihf/debug/deps/untitled-aae2a5c0cbb7ec24.q80aziqziwwyd3p.rcgu.o
