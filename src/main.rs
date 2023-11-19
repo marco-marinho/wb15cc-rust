@@ -3,21 +3,96 @@
 
 use core::panic::PanicInfo;
 use core::arch::global_asm;
+use core::ptr::write_volatile;
+use core::mem::zeroed;
+use core::ptr::read;
+use core::arch::asm;
 
-global_asm!(include_str!("startup/startup_stm32wb15ccux.s"));
+mod drivers;
 
-const RCC_ADDR: usize = 0x5800_004C;
-
+global_asm!(include_str!("startup/startup.s"));
 #[no_mangle]
-pub extern "C" fn _start() -> ! {
-    let rcc = unsafe { &mut *(RCC_ADDR as *mut u32) };
-    *rcc |= 1u32<<1;
-    let gpiob_moder = unsafe { &mut *(0x4800_0400 as *mut u32) };
-    *gpiob_moder &= !(3u32<<10);
-    *gpiob_moder |= 1u32<<10;
-    let gpiob_odr = unsafe { &mut *(0x4800_0414 as *mut u32) };
+pub extern "C" fn Reset_Handler() -> ! {
+    extern "C" {
+        // These symbols come from the linker file `*****.ld`
+        static mut _sbss: u32; // Start of .bss section
+        static mut _ebss: u32; // End of .bss section
+        static mut _sdata: u32; // Start of .data section
+        static mut _edata: u32; // End of .data section
+        static _sidata: u32; // Start of .rodata section
+        static mut __preinit_array_start: extern fn();
+        static mut __preinit_array_end: extern fn();
+        static mut __init_array_start: extern fn();
+        static mut __init_array_end: extern fn();
+    }
+
+    // Initialize (Zero) BSS
+    unsafe {
+        let mut sbss: *mut u32 = &mut _sbss;
+        let ebss: *mut u32 = &mut _ebss;
+
+        while sbss < ebss {
+            write_volatile(sbss, zeroed());
+            sbss = sbss.offset(1);
+        }
+    }
+
+    // Initialize Data
+    unsafe {
+        let mut sdata: *mut u32 = &mut _sdata;
+        let edata: *mut u32 = &mut _edata;
+        let mut sidata: *const u32 = &_sidata;
+
+        while sdata < edata {
+            write_volatile(sdata, read(sidata));
+            sdata = sdata.offset(1);
+            sidata = sidata.offset(1);
+        }
+    }
+
+    // Initialize global objects (C++)
+    unsafe {
+        let mut preinit_start: *mut extern fn() = &mut __preinit_array_start;
+        let preinit_end: *mut extern fn() = &mut __preinit_array_end;
+        while preinit_start < preinit_end {
+            (*preinit_start)();
+            preinit_start = preinit_start.offset(1);
+        }
+
+        let mut init_start: *mut extern fn() = &mut __init_array_start;
+        let init_end: *mut extern fn() = &mut __init_array_end;
+        while init_start < init_end {
+            (*init_start)();
+            init_start = init_start.offset(1);
+        }
+    }
+
+    // Enable FPU
+    unsafe{
+        asm!("ldr r0, =0xE000ED88",
+        "ldr r1, =(0b1111 << 20)",
+        "ldr r2, [r0]",
+        "orr r2, r2, r1",
+        "str r2, [r0]",
+        "dsb",
+        "isb");
+    }
+
+    // Call main function
+    _start()
+}
+
+fn _start() -> ! {
+    let rcc = unsafe {&mut *(0x5800_0000 as *mut drivers::rcc::RCC)};
+    rcc.ahb2enr |= 1u32 << 1;
+    let gpiob = unsafe { &mut *(0x4800_0400 as *mut drivers::gpio::GPIO) };
+    gpiob.set_pin_mode(drivers::gpio::GPIOMode::Output, 5);
+    gpiob.set_pin_mode(drivers::gpio::GPIOMode::Output, 1);
+    gpiob.set_pin_mode(drivers::gpio::GPIOMode::Output, 0);
     loop {
-        *gpiob_odr ^= 1<<5;
+        gpiob.toggle_pin(5);
+        gpiob.toggle_pin(1);
+        gpiob.toggle_pin(0);
         for _i in 0..10000{}
     }
 }

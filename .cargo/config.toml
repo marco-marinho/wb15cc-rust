@@ -14,4 +14,5 @@ rustflags = [
     "-C", "link-args=-mcpu=cortex-m4",
     "-C", "link-args=-mthumb",
     "-C", "link-args=-mthumb-interwork",
+#    "-C", "link-args=./cmake-build-debug/libinit.a"
 ]
