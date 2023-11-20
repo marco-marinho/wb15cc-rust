@@ -1,3 +1,6 @@
+use core::ptr::{read_volatile, write_volatile};
+use crate::drivers::gpio::GPIOPort;
+
 #[repr(C)]
 pub struct RCC{
     pub cr: u32,           // RCC clock  Control Register,                                                    Address offset: 0x00
@@ -58,4 +61,17 @@ pub struct RCC{
     pub c2apb1smenr2: u32, // RCC APB1 peripheral CPU2 clocks enable in sleep mode and stop modes register 2, Address offset: 0x17C
     pub c2apb2smenr: u32,  // RCC APB2 peripheral CPU2 clocks enable in sleep mode and stop modes register,   Address offset: 0x180
     pub c2apb3smenr: u32,  // RCC APB3 peripheral CPU2 clocks enable in sleep mode and stop modes register,   Address offset: 0x184
+}
+
+impl RCC {
+    pub fn enable_gpio(&mut self, port: GPIOPort){
+        let value = unsafe {read_volatile(&self.ahb2enr)};
+        match port {
+            GPIOPort::A => {unsafe{write_volatile(&mut self.ahb2enr, value | 1)}}
+            GPIOPort::B => {unsafe{write_volatile(&mut self.ahb2enr, value | 1 << 1)}}
+            GPIOPort::C => {unsafe{write_volatile(&mut self.ahb2enr, value | 1 << 2)}}
+            GPIOPort::E => {unsafe{write_volatile(&mut self.ahb2enr, value | 1 << 4)}}
+            GPIOPort::H => {unsafe{write_volatile(&mut self.ahb2enr, value | 1 << 7)}}
+        }
+    }
 }
