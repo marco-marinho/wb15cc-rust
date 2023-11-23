@@ -12,7 +12,7 @@ mod drivers;
 
 global_asm!(include_str!("startup/startup.s"));
 #[no_mangle]
-pub unsafe extern "C" fn Reset_Handler() {
+pub extern "C" fn Reset_Handler() {
     extern "C" {
         // These symbols come from the linker file `*****.ld`
         static mut _sbss: u32; // Start of .bss section
@@ -84,27 +84,13 @@ pub unsafe extern "C" fn Reset_Handler() {
 
 fn _start() -> ! {
     let rcc = unsafe {&mut *(0x5800_0000 as *mut drivers::rcc::RCC)};
-    rcc.enable_gpio(drivers::gpio::GPIOPort::B);
-    rcc.enable_gpio(drivers::gpio::GPIOPort::A);
     let gpioa = unsafe { &mut *(0x4800_0000 as *mut drivers::gpio::GPIO) };
     let gpiob = unsafe { &mut *(0x4800_0400 as *mut drivers::gpio::GPIO) };
-    gpiob.set_pin_mode(drivers::gpio::GPIOMode::Output, 5);
-    gpiob.set_pin_mode(drivers::gpio::GPIOMode::Output, 1);
-    gpiob.set_pin_mode(drivers::gpio::GPIOMode::Output, 0);
-
-    gpioa.set_pin_mode(drivers::gpio::GPIOMode::Input, 6);
-
+    let usart = unsafe { &mut * (0x4001_3800 as *mut drivers::usart::USART)};
+    usart.setup(rcc, gpioa, gpiob,4_000_000, 115200);
+    let s = "Hello, world!\n\r";
     loop {
-        if !gpioa.read_pin(6) {
-            gpiob.set_pin(5);
-            gpiob.set_pin(1);
-            gpiob.set_pin(0);
-        }
-        else {
-            gpiob.reset_pin(5);
-            gpiob.reset_pin(1);
-            gpiob.reset_pin(0);
-        }
+        usart.write(s);
     }
 }
 
