@@ -44,22 +44,32 @@ impl USART {
         set_bit(&self.cr1, 3);
     }
     fn enable_rx(&self) {
-        set_bit(& self.cr1, 2);
+        set_bit(&self.cr1, 2);
     }
     fn enable(&self) {
         set_bit(&self.cr1, 0);
     }
-    pub fn setup(&mut self, rcc: &mut RCC, gpioa: &mut GPIO, gpiob: &mut GPIO, clk: u32, baud: u32) {
-        rcc.enable_gpio(gpio::GPIOPort::A);
-        rcc.enable_gpio(gpio::GPIOPort::B);
-        gpioa.set_pin_mode(GPIOMode::Alternate, 9);
-        gpioa.set_pin_mode(GPIOMode::Alternate, 10);
-        gpioa.set_alternate_function(9, 7);
-        gpioa.set_alternate_function(10, 7);
-        gpiob.set_pin_mode(GPIOMode::Alternate, 6);
-        gpiob.set_pin_mode(GPIOMode::Alternate, 7);
-        gpiob.set_alternate_function(6, 7);
-        gpiob.set_alternate_function(7, 7);
+
+    pub fn setup_gpio(&self, rcc: &mut RCC, gpio: &mut GPIO, gpio_port: gpio::GPIOPort) {
+        match gpio_port {
+            gpio::GPIOPort::A => {
+                rcc.enable_gpio(gpio::GPIOPort::A);
+                gpio.set_pin_mode(GPIOMode::Alternate, 9);
+                gpio.set_pin_mode(GPIOMode::Alternate, 10);
+                gpio.set_alternate_function(9, 7);
+                gpio.set_alternate_function(10, 7);
+            }
+            gpio::GPIOPort::B => {
+                rcc.enable_gpio(gpio::GPIOPort::B);
+                gpio.set_pin_mode(GPIOMode::Alternate, 6);
+                gpio.set_pin_mode(GPIOMode::Alternate, 7);
+                gpio.set_alternate_function(6, 7);
+                gpio.set_alternate_function(7, 7);
+            }
+            _ => {}
+        }
+    }
+    pub fn setup(&mut self, rcc: &mut RCC, clk: u32, baud: u32) {
         rcc.enable_usart_1();
         self.set_baud_rate(clk, baud);
         self.enable_tx();
@@ -72,6 +82,11 @@ impl USART {
             self.tdr.set(c as u32 & 0xFF);
         }
         while self.isr.get() & (1 << 6) == 0 {}
+    }
+
+    pub fn read(&mut self) -> char {
+        while self.isr.get() & (1 << 5) == 0 {}
+        unsafe {char::from_u32_unchecked(self.rdr.get())}
     }
 }
 

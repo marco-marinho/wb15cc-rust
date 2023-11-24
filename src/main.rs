@@ -7,6 +7,7 @@ use core::ptr::write_volatile;
 use core::mem::zeroed;
 use core::ptr::read;
 use core::arch::asm;
+use crate::drivers::gpio;
 
 mod drivers;
 
@@ -84,13 +85,20 @@ pub extern "C" fn Reset_Handler() {
 
 fn _start() -> ! {
     let rcc = unsafe {&mut *(0x5800_0000 as *mut drivers::rcc::RCC)};
-    let gpioa = unsafe { &mut *(0x4800_0000 as *mut drivers::gpio::GPIO) };
-    let gpiob = unsafe { &mut *(0x4800_0400 as *mut drivers::gpio::GPIO) };
+    let gpioa = unsafe { &mut *(0x4800_0000 as *mut gpio::GPIO) };
+    let gpiob = unsafe { &mut *(0x4800_0400 as *mut gpio::GPIO) };
     let usart = unsafe { &mut * (0x4001_3800 as *mut drivers::usart::USART)};
-    usart.setup(rcc, gpioa, gpiob,4_000_000, 115200);
-    let s = "Hello, world!\n\r";
+    usart.setup_gpio(rcc, gpioa, gpio::GPIOPort::A);
+    usart.setup(rcc, 4_000_000, 115200);
+    usart.write("Waiting:\n\r");
     loop {
-        usart.write(s);
+        let key = usart.read();
+        if key == 's' {
+            usart.write("\n\rGot s\n\r");
+        }
+        else {
+            usart.write("\n\rGot something else\n\r");
+        }
     }
 }
 
