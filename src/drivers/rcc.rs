@@ -136,4 +136,20 @@ impl RCC {
         let value = self.apb2enr.get();
         self.apb2enr.set( value | 1 << 14);
     }
+    pub fn enable_adc(&mut self) {
+        let value = self.ccipr.get();
+        self.ccipr.set(value | (3 << 28));
+        let value = self.apb2enr.get();
+        self.apb2enr.set( value | 1 << 9);
+        // self.apb2rstr.set(1 << 9);
+    }
+
+    pub fn set_msi(&mut self){
+        while self.cr.get() & (1 << 1) == 0 {};
+        let mut val = self.cr.get();
+        val &= !((1+2+4+8) << 4);
+        val |= (8+2) << 4;
+        self.cr.set(val);
+        self.smpscr.set(257);
+    }
 }

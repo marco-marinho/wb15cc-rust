@@ -1,12 +1,14 @@
 #![no_std]
 #![no_main]
-
 use core::panic::PanicInfo;
 use core::arch::global_asm;
 use core::ptr::write_volatile;
 use core::mem::zeroed;
 use core::ptr::read;
 use core::arch::asm;
+use core::fmt::Write;
+use heapless::String;
+use crate::drivers::adc::ADC;
 use crate::drivers::gpio;
 
 mod drivers;
@@ -78,7 +80,7 @@ pub extern "C" fn Reset_Handler() {
         "dsb",
         "isb");
     }
-
+    //
     // Call main function
     _start()
 }
@@ -86,23 +88,29 @@ pub extern "C" fn Reset_Handler() {
 fn _start() -> ! {
     let rcc = unsafe {&mut *(0x5800_0000 as *mut drivers::rcc::RCC)};
     let gpioa = unsafe { &mut *(0x4800_0000 as *mut gpio::GPIO) };
-    let gpiob = unsafe { &mut *(0x4800_0400 as *mut gpio::GPIO) };
+    let _gpiob = unsafe { &mut *(0x4800_0400 as *mut gpio::GPIO) };
     let usart = unsafe { &mut * (0x4001_3800 as *mut drivers::usart::USART)};
+    let adc = unsafe { &mut * (0x4001_2400 as *mut drivers::adc::ADC)};
+    rcc.set_msi();
     usart.setup_gpio(rcc, gpioa, gpio::GPIOPort::A);
-    usart.setup(rcc, 4_000_000, 115200);
-    usart.write("Waiting:\n\r");
+    usart.setup(rcc, 32_000_000, 115200);
+    usart.write("Setup\n\r");
+    usart.write("Rato\n\r");
+    adc.setup(rcc);
+    let mut buffer = String::<32>::new(); // 32 byte string buffer
     loop {
-        let key = usart.read();
-        if key == 's' {
-            usart.write("\n\rGot s\n\r");
-        }
-        else {
-            usart.write("\n\rGot something else\n\r");
-        }
+        usart.write("Start Conversion\n\r");
+        adc.start_conversion();
+        let val = adc.read_conversion();
+        let c_val = ADC::convert_temp(val);
+        let _res = write!(buffer, "data:{c_val}\n\r");
+        usart.write(&buffer);
     }
 }
 
 #[panic_handler]
 fn panic (_info: &PanicInfo) -> ! {
-    loop{}
+    loop{
+        let a = 1;
+    }
 }
